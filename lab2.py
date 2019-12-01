@@ -1,4 +1,4 @@
-import math
+from Hexagon import Hexagon
 
 
 def comparison_str(index_1: str, index_2: str, key: str, value: float) -> str:
@@ -12,14 +12,6 @@ def comparison(hexagons_list, key):
         return comparison_str('2', '1', key, hexagons_list[1].__dict__[key] - hexagons_list[0].__dict__[key])
     else:
         return f"{key} of hexagon 1 and hexagon 2 equal {hexagons_list[0].__dict__[key]}"
-
-
-class Hexagon:
-    def __init__(self, side: float):
-        self.side = side
-        self.angle = (360 / 6) * 2
-        self.perimeter = 6 * side
-        self.area = ((3 * math.sqrt(3)) / 2) * math.pow(side, 2)
 
 
 side1 = float(input('Input side of first Hexagon '))
