@@ -72,7 +72,6 @@ def make_menu(menu_items):
     choice = input(">> ")
     try:
         if int(choice) < 0: raise ValueError
-        # Call the matching function
         menu_items[int(choice)]["fn"]()
     except (ValueError, IndexError):
         pass
