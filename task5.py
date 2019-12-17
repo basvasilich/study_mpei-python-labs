@@ -4,10 +4,11 @@ database = []
 
 
 class Employee:
-    def __init__(self, employee_id=0, first_name='', second_name='', age=0, gender=''):
+    def __init__(self, employee_id=0, city='', first_name='', second_name='', age=0, gender=''):
         self.employee_id = employee_id
         self.first_name = first_name
         self.second_name = second_name
+        self.city = city
         self.age = age
         self.gender = gender
 
@@ -48,6 +49,11 @@ class Employee:
             self.age = int(input('Input age: '))
             if not self.check_age(self.age):
                 print("invalid age")
+
+        while not self.check_str(self.city):
+            self.city = input('Input city: ')
+            if not self.check_str(self.city):
+                print("invalid name")
 
         return self
 
@@ -112,13 +118,13 @@ def success():
 
 def make_header():
     return f"""
-ID    | Type    |  Name      | Surname    | Gender | Age |
-----------------------------------------------------------
+ID    | Type    |  Name      | Surname    | Gender | Age  | City   |
+--------------------------------------------------------------------
 """
 
 
 def make_row(item):
-    return f"{str(item.employee_id):5} | {item.type:7} | {item.first_name:10} | {item.second_name:10} | {item.gender:6} | {str(item.age):>3} |\n"
+    return f"{str(item.employee_id):5} | {item.type:7} | {item.first_name:10} | {item.second_name:10} | {item.gender:6} | {str(item.age):>3}  | {item.city:10} |\n"
 
 
 def check_uniq(employee_id):
@@ -168,6 +174,23 @@ def show_students():
     show(0, 'student')
 
 
+def show_moscow():
+    os.system('clear')
+    count = 0
+    for item in database:
+        if item.city == 'Moscow' or item.city == 'moscow':
+            count += 1
+            flag = True
+
+    if count == 0:
+        data = 'No records \n'
+    else:
+        data = 'Employee in Moscow: ' + str(count) + '\n'
+
+    print(data)
+    input("Press [Enter] for return to main menu")
+
+
 def show_one():
     employee_id = -1
     while check_uniq(employee_id):
@@ -214,6 +237,7 @@ main_menu_items = [
     {"title": "Show Only Tutors", "fn": show_tutors},
     {"title": "Show Only Students", "fn": show_students},
     {"title": "Show Item by ID", "fn": show_one},
+    {"title": "Show How many in Moscow", "fn": show_moscow},
     {"title": "Edit Item by ID", "fn": edit},
     {"title": "Exit", "fn": exit},
 ]
