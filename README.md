@@ -1,1 +1,1 @@
-# mpei-oop-study
+# MPEI OOP Course Labs
