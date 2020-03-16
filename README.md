@@ -1,1 +1,1 @@
-# MPEI OOP Course Labs
+# MPEI Python Labs
